@@ -26,7 +26,7 @@ module.exports = {
     // 这里值为 false 表示这个全局变量不允许被重新赋值，比如：
     //
     React: false,
-    ReactDOM: false
+    ReactDOM: false,
   },
   settings: {
     react: {
@@ -46,6 +46,7 @@ module.exports = {
         caughtErrors: 'none',
       },
     ],
+    'react/prop-types': 'off',
     'max-nested-callbacks': 'off',
     'react/no-children-prop': 'off',
     'typescript/member-ordering': 'off',
