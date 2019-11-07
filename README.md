@@ -57,3 +57,39 @@ use-isnan // 检查NaN时,只能使用isNaN函数
 valid-typeof // typeof 的返回值只能与有效的类型的字符比较
 
 ```
+
+vacode配置
+```
+{
+  "eslint.enable": true,  //是否开启vscode的eslint
+  "eslint.autoFixOnSave": true, //是否在保存的时候自动fix eslint
+  "eslint.options": {    //指定vscode的eslint所处理的文件的后缀
+    "extensions": [
+      ".js",
+      ".vue",
+      ".ts",
+      ".tsx"
+    ]
+  },
+  "eslint.validate": [     //确定校验准则
+    "javascript",
+    "javascriptreact",
+    {
+      "language": "html",
+      "autoFix": true
+    },
+    {
+      "language": "vue",
+      "autoFix": true
+    },
+    {
+      "language": "typescript",
+      "autoFix": true
+    },
+    {
+      "language": "typescriptreact",
+      "autoFix": true
+    }
+  ]
+}
+```

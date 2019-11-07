@@ -16,9 +16,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 let isMinicss = _modeProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 const common = smp.wrap({
-  entry: join(srcDir, './index.js'),
+  entry: join(srcDir, './index.tsx'),
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
       mobx: join(__dirname, './node_modules/mobx/lib/mobx.es6.js'),
       'react-dom': '@hot-loader/react-dom',
@@ -64,7 +64,7 @@ const common = smp.wrap({
         use: [isMinicss, 'css-loader'],
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(j|t)sx?$/,
         exclude: /node_modules/,
         use: [
           {
@@ -73,7 +73,7 @@ const common = smp.wrap({
               cacheDirectory: !_modeProduction, // 开发环境下开启 babel 缓存
             },
           },
-          { loader: 'eslint-loader', options: { cache: true } },
+          { loader: 'eslint-loader' },
         ],
       },
       {

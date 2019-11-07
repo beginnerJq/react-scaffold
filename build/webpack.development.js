@@ -15,7 +15,7 @@ module.exports = {
     contentBase: distDir,
     host: 'localhost',
     compress: true,
-    port: 666,
+    port: 3000,
     hot: true,
     historyApiFallback: true,
     proxy,
