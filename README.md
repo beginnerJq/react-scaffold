@@ -66,7 +66,6 @@ vacode配置
   "eslint.options": {    //指定vscode的eslint所处理的文件的后缀
     "extensions": [
       ".js",
-      ".vue",
       ".ts",
       ".tsx"
     ]
@@ -76,10 +75,6 @@ vacode配置
     "javascriptreact",
     {
       "language": "html",
-      "autoFix": true
-    },
-    {
-      "language": "vue",
       "autoFix": true
     },
     {

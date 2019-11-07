@@ -20,7 +20,6 @@ const common = smp.wrap({
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
     alias: {
-      mobx: join(__dirname, './node_modules/mobx/lib/mobx.es6.js'),
       'react-dom': '@hot-loader/react-dom',
     },
   },
