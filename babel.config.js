@@ -8,12 +8,8 @@ module.exports = {
         corejs: 3,
       },
     ],
-    [
-      '@babel/preset-react',
-      {
-        development: process.env.BABEL_ENV === 'development',
-      },
-    ],
+    '@babel/preset-typescript',
+    '@babel/preset-react',
   ],
   plugins: [
     'react-hot-loader/babel',

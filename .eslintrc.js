@@ -1,55 +1,93 @@
-/**
- * 0 1 2为错误等级
- */
 module.exports = {
-  // 指定解析器
-  parser: 'babel-eslint',
-  // 指定解析器选项
+  extends: [
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'plugin:prettier/recommended',
+  ],
   parserOptions: {
-    ecmaVersion: 2020,
+    ecmaVersion: 2019,
     sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-      modules: true,
-    },
   },
-  // 指定脚本的运行环境
   env: {
+    node: true,
     browser: true,
+    commonjs: true,
     es6: true,
   },
-  // 别人可以直接使用你配置好的ESLint
-  root: true,
-  // 当访问当前源文件内未定义的变量时，no-undef 规则将发出警告
-  // 所以需要定义这些额外的全局变量
+  parser: '@typescript-eslint/parser',
+  plugins: [
+    // "@typescript-eslint",
+    'react-hooks',
+  ],
   globals: {
-    process: true,
+    // 这里填入你的项目需要的全局变量
+    // 这里值为 false 表示这个全局变量不允许被重新赋值，比如：
+    //
+    // React: false,
+    // ReactDOM: false
   },
-  // 默认的规则结合 prettier 规则  参考 https://eslint.org/docs/rules/
-  extends: ['eslint:recommended', 'plugin:prettier/recommended'],
-  // 启用的规则及其各自的错误级别
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
+  },
   rules: {
-    'prettier/prettier': 'error',
-    // 最大块嵌套深度为 5 层
-    'max-depth': ['error', 5],
-    // 字符串必须使用单引号
-    quotes: [
-      2,
-      'single',
+    // 这里填入你的项目需要的个性化配置，比如：
+    // // @fixable 一个缩进必须用两个空格替代
+    semi: ['error', 'never'],
+    'no-console': 'off',
+    'no-unused-vars': [
+      'warn',
       {
-        avoidEscape: true,
-        allowTemplateLiterals: true, // 允许使用模板字符串
+        vars: 'all',
+        args: 'none',
+        caughtErrors: 'none',
       },
     ],
-    // 不能在块作用域内 var 定义的变量
-    'block-scoped-var': 2,
-    // 变量名必须使用驼峰式
-    camelcase: 2,
-    // 禁止函数 if ... else switch 的复杂度超过 10
-    complexity: ['error', 10],
-    // 变量导入未使用
-    'no-unused-vars': 0,
-    // 禁止 == 和 != 与 null 做比较，必须用 === 或 !==
-    'no-eq-null': 2,
+    'max-nested-callbacks': 'off',
+    'react/no-children-prop': 'off',
+    'typescript/member-ordering': 'off',
+    'typescript/member-delimiter-style': 'off',
+    'react/jsx-indent-props': 'off',
+    'react/no-did-update-set-state': 'off',
+    'react-hooks/rules-of-hooks': 'error',
+    'react-hooks/exhaustive-deps': 'warn',
+    '@typescript-eslint/interface-name-prefix': 'off',
+    '@typescript-eslint/no-var-requires': 'off',
+    '@typescript-eslint/explicit-member-accessibility': [
+      'error',
+      { accessibility: 'no-public' },
+    ],
+    '@typescript-eslint/explicit-function-return-type': [
+      // 'warn',
+      'off',
+      {
+        allowExpressions: true,
+        allowTypedFunctionExpressions: true,
+      },
+    ],
+    '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-non-null-assertion': 'off',
+    '@typescript-eslint/no-use-before-define': 'off',
+    '@typescript-eslint/camelcase': ['off', { properties: 'always' }],
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      {
+        vars: 'all',
+        args: 'none',
+        ignoreRestSiblings: true,
+      },
+    ],
+    indent: [
+      'off',
+      2,
+      {
+        SwitchCase: 1,
+        flatTernaryExpressions: true,
+      },
+    ],
   },
 };
