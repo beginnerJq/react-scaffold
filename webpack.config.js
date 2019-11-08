@@ -12,10 +12,12 @@ const SpeedMeasurePlugin = require('speed-measure-webpack-plugin');
 const smp = new SpeedMeasurePlugin();
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 let isMinicss = _modeProduction ? MiniCssExtractPlugin.loader : 'style-loader';
 
 const common = smp.wrap({
+  context: __dirname, // to automatically find tsconfig.json
   entry: join(srcDir, './index.tsx'),
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx'],
@@ -63,13 +65,20 @@ const common = smp.wrap({
         use: [isMinicss, 'css-loader'],
       },
       {
-        test: /\.(j|t)sx?$/,
+        test: /\.tsx?$/,
         exclude: /node_modules/,
         use: [
           {
             loader: 'babel-loader',
             options: {
               cacheDirectory: !_modeProduction, // 开发环境下开启 babel 缓存
+            },
+          },
+          {
+            loader: 'ts-loader',
+            options: {
+              // disable type checker - we will use it in fork plugin
+              transpileOnly: true,
             },
           },
           { loader: 'eslint-loader' },
@@ -92,6 +101,12 @@ const common = smp.wrap({
     ],
   },
   plugins: [
+    new ForkTsCheckerWebpackPlugin({
+      eslint: true,
+      reportFiles: ['src/**/*.{ts,tsx}'],
+      checkSyntacticErrors: true,
+      async: false,
+    }),
     new MiniCssExtractPlugin({
       filename: _modeProduction
         ? 'styles/[name].[contenthash].css'

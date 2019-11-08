@@ -29,6 +29,6 @@ module.exports = {
       template: join(srcDir, './index.html'),
       cache: true,
     }),
-    //new HardSourceWebpackPlugin(),
+    new HardSourceWebpackPlugin(),
   ],
 };
