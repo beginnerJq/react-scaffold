@@ -62,7 +62,7 @@
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.1",
     "webpack-merge": "^4.2.2",
-    "yargs-parser": "^14.0.0"
+    "yargs-parser": "^15.0.1"
   },
   "dependencies": {
     "@babel/preset-typescript": "^7.7.2",
